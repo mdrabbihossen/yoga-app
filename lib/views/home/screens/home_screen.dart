@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:yoga_app/constants/widgets/text_style.dart';
 import 'package:yoga_app/views/home/widgets/custom_appbar.dart';
+import 'package:yoga_app/views/home/widgets/custom_drawer.dart';
 import 'package:yoga_app/views/home/widgets/home_content.dart';
 import 'package:yoga_app/views/home/widgets/yoga_content.dart';
 
@@ -56,7 +57,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
     final size = MediaQuery.of(context).size;
     return Scaffold(
       key: scaffoldKey,
-      drawer: Drawer(),
+      drawer: CustomDrawer(),
       backgroundColor: Colors.white,
       body: NotificationListener(
         onNotification: scrollListener,
@@ -105,6 +106,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                             Container(
                               margin: EdgeInsets.all(20),
                               child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   // yoga for all title
                                   Container(
@@ -138,11 +140,41 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                           'https://images.unsplash.com/photo-1573590330099-d6c7355ec595?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80',
                                       yogaTitle: 'Suryanamaskar',
                                       yogaSubtitle: 'Last Time : Yesterday'),
-
+                                  SizedBox(height: 20),
+                                  Container(
+                                    padding: EdgeInsets.only(bottom: 10),
+                                    child: Text(
+                                      'Choose Your Type',
+                                      style: textStyle(
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ),
+                                  YogaContent(
+                                      image:
+                                          'https://images.unsplash.com/photo-1599901860904-17e6ed7083a0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80',
+                                      yogaTitle: 'Power Yoga',
+                                      yogaSubtitle: 'Last Time : Yesterday'),
+                                  SizedBox(height: 15),
+                                  YogaContent(
+                                    image:
+                                        'https://media.istockphoto.com/photos/young-woman-in-yoga-pose-using-laptop-at-home-picture-id1334071264?b=1&k=20&m=1334071264&s=170667a&w=0&h=0wnQzJJJIA5NMo6dOmVepS6mXC0eqLjI26ADDlIK4Lg=',
+                                    yogaTitle: 'Breathing Yoga',
+                                    yogaSubtitle: 'Last Time : 29 Jan',
+                                  ),
+                                  SizedBox(height: 15),
+                                  YogaContent(
+                                    image:
+                                        'https://images.unsplash.com/photo-1556816723-1ce827b9cfbb?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=792&q=80',
+                                    yogaTitle: 'Increase Flexibility',
+                                    yogaSubtitle: 'Last Time : 29 Jan',
+                                  ),
                                   // yoga content end
                                 ],
                               ),
                             ),
+
                             // yoga section end
 
                             Container(
