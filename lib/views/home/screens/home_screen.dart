@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:yoga_app/views/widgets/custom_appbar.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:yoga_app/constants/widgets/text_style.dart';
+import 'package:yoga_app/views/home/widgets/custom_appbar.dart';
+import 'package:yoga_app/views/home/widgets/home_content.dart';
+import 'package:yoga_app/views/home/widgets/yoga_content.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -49,6 +53,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     return Scaffold(
       key: scaffoldKey,
       drawer: Drawer(),
@@ -66,14 +71,80 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                       children: [
                         Column(
                           children: [
+                            // home content
                             Container(
-                              height: 1000,
-                              color: Colors.blue,
+                              padding: EdgeInsets.fromLTRB(50, 150, 50, 40),
+                              decoration: BoxDecoration(
+                                color: Colors.blue,
+                                borderRadius: BorderRadius.only(
+                                  bottomRight: Radius.circular(15),
+                                  bottomLeft: Radius.circular(15),
+                                ),
+                              ),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceAround,
+                                children: [
+                                  HomeContent(
+                                    downText: 'Streak',
+                                    upperText: '1',
+                                  ),
+                                  HomeContent(
+                                    downText: 'kCal',
+                                    upperText: '120',
+                                  ),
+                                  HomeContent(
+                                    downText: 'Minutes',
+                                    upperText: '26',
+                                  ),
+                                ],
+                              ),
                             ),
+                            // home content end
+                            // yoga section
                             Container(
-                              height: 1000,
-                              color: Colors.green,
+                              margin: EdgeInsets.all(20),
+                              child: Column(
+                                children: [
+                                  // yoga for all title
+                                  Container(
+                                    padding: EdgeInsets.only(bottom: 6),
+                                    width: size.width,
+                                    child: Text(
+                                      'Yoga For All',
+                                      style: textStyle(
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ),
+                                  // yoga for all title end
+                                  // yoga content
+                                  YogaContent(
+                                    image:
+                                        'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=920&q=80',
+                                    yogaTitle: 'Yoga For Beginners',
+                                    yogaSubtitle: 'Last Time : 2 Feb',
+                                  ),
+                                  SizedBox(height: 15),
+                                  YogaContent(
+                                      image:
+                                          'https://images.unsplash.com/photo-1510894347713-fc3ed6fdf539?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80',
+                                      yogaTitle: 'Weight Loss Yoga',
+                                      yogaSubtitle: 'Last Time : 22 Jan'),
+                                  SizedBox(height: 15),
+                                  YogaContent(
+                                      image:
+                                          'https://images.unsplash.com/photo-1573590330099-d6c7355ec595?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80',
+                                      yogaTitle: 'Suryanamaskar',
+                                      yogaSubtitle: 'Last Time : Yesterday'),
+
+                                  // yoga content end
+                                ],
+                              ),
                             ),
+                            // yoga section end
+
                             Container(
                               height: 1000,
                               color: Colors.blue,
