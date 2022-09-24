@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:yoga_app/views/widgets/custom_appbar.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -7,72 +8,91 @@ class HomeScreen extends StatefulWidget {
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
+  late AnimationController _animationController;
+  late Animation _colorTween, _homeTween, _yogaTween, _iconTween, _drawerTween;
+  late AnimationController _textAnimationController;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _animationController =
+        AnimationController(vsync: this, duration: Duration(seconds: 0));
+    _colorTween = ColorTween(begin: Colors.transparent, end: Colors.white)
+        .animate(_animationController);
+    _iconTween = ColorTween(begin: Colors.white, end: Colors.lightBlue)
+        .animate(_animationController);
+    _drawerTween = ColorTween(begin: Colors.white, end: Colors.black)
+        .animate(_animationController);
+    _homeTween = ColorTween(begin: Colors.white, end: Colors.blue)
+        .animate(_animationController);
+    _yogaTween = ColorTween(begin: Colors.white, end: Colors.black)
+        .animate(_animationController);
+    _textAnimationController = AnimationController(
+      vsync: this,
+      duration: Duration(seconds: 0),
+    );
+  }
+
+  bool scrollListener(ScrollNotification scrollNotification) {
+    bool scroll = false;
+    if (scrollNotification.metrics.axis == Axis.vertical) {
+      _animationController.animateTo(scrollNotification.metrics.pixels / 80);
+      _textAnimationController.animateTo(scrollNotification.metrics.pixels);
+      return scroll = true;
+    }
+    return scroll;
+  }
+
+  final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey();
+
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
     return Scaffold(
+      key: scaffoldKey,
+      drawer: Drawer(),
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        title: Text('Yoga App'),
-      ),
-      body: SingleChildScrollView(
-        child: Column(
+      body: NotificationListener(
+        onNotification: scrollListener,
+        child: Stack(
           children: [
-            Padding(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 25.0, vertical: 20),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            SizedBox(
+              height: double.infinity,
+              child: Stack(
                 children: [
-                  Column(
-                    children: [Text("1"), Text("Streak")],
-                  ),
-                  Column(
-                    children: [Text("1"), Text("Streak")],
-                  ),
-                  Column(
-                    children: [Text("1"), Text("Streak")],
-                  )
-                ],
-              ),
-            ),
-            Divider(
-              thickness: 3,
-              indent: 20,
-              endIndent: 20,
-            ),
-            // yoga for all
-            Container(
-              padding: EdgeInsets.all(25),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text('Yoga For All'),
-                  SizedBox(height: 15),
-                  Container(
-                    height: size.height * 0.2,
-                    decoration: BoxDecoration(
-                      color: Colors.blueGrey,
+                  SingleChildScrollView(
+                    child: Stack(
+                      children: [
+                        Column(
+                          children: [
+                            Container(
+                              height: 1000,
+                              color: Colors.blue,
+                            ),
+                            Container(
+                              height: 1000,
+                              color: Colors.green,
+                            ),
+                            Container(
+                              height: 1000,
+                              color: Colors.blue,
+                            )
+                          ],
+                        ),
+                      ],
                     ),
                   ),
-                ],
-              ),
-            ),
-            // yoga for all end
-            // yoga for students
-            Container(
-              padding: EdgeInsets.all(25),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text('Yoga for Students'),
-                  SizedBox(height: 15),
-                  Container(
-                    height: size.height * 0.2,
-                    decoration: BoxDecoration(
-                      color: Colors.blueGrey,
-                    ),
+                  CustomAppBar(
+                    animationController: _animationController,
+                    onPressed: () {
+                      scaffoldKey.currentState!.openDrawer();
+                    },
+                    colorsTween: _colorTween,
+                    drawerTween: _drawerTween,
+                    homeTween: _homeTween,
+                    iconTween: _iconTween,
+                    yogaTween: _yogaTween,
                   ),
                 ],
               ),
