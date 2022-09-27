@@ -84,8 +84,17 @@ class WorkOutDetails extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  customButton(onPressed: (){}, buttonText: 'Previous'),
-                  customButton(onPressed: (){}, buttonText: 'Next'),
+                  customButton(
+                      onPressed: () {},
+                      buttonText: 'Previous',
+                      bgColor: Colors.white,
+                      textColor: Color(0xff6558F5)),
+                  customButton(
+                    onPressed: () {},
+                    buttonText: 'Next',
+                    bgColor: Colors.white,
+                    textColor: Color(0xff6558F5),
+                  ),
                 ],
               ),
             ),

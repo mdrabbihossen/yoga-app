@@ -16,13 +16,6 @@ class BreakTime extends StatelessWidget {
         body: Container(
           height: size.height,
           width: size.width,
-          decoration: BoxDecoration(
-            image: DecorationImage(
-              fit: BoxFit.cover,
-              image: NetworkImage(
-                  'https://images.unsplash.com/photo-1558017487-06bf9f82613a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=470&q=80'),
-            ),
-          ),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -46,24 +39,66 @@ class BreakTime extends StatelessWidget {
               SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () {},
+                style: ElevatedButton.styleFrom(
+                    elevation: 0,
+                    primary: Colors.white,
+                    side: BorderSide(color: Color(0xff9289F8), width: 2)),
                 child: Padding(
                   padding:
                       const EdgeInsets.symmetric(vertical: 10, horizontal: 24),
                   child: Text(
                     'SKIP',
-                    style: textStyle(fontSize: 19),
+                    style: textStyle(
+                      fontSize: 19,
+                      textColor: Color(0xff9289F8),
+                    ),
                   ),
                 ),
               ),
               Spacer(),
               Container(
                 margin: EdgeInsets.symmetric(horizontal: 15),
-                child: Row(
+                child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    customButton(onPressed: (){}, buttonText: 'Previous'),
-                    customButton(onPressed: (){}, buttonText: 'Next'),
+                    customButton(
+                      onPressed: () {},
+                      buttonText: 'Previous',
+                      bgColor: Color(
+                        0xff6558F5,
+                      ),
+                      size: Size(double.infinity, size.height * 0.07),
+                    ),
+                    SizedBox(height: 15),
+                    customButton(
+                      onPressed: () {},
+                      buttonText: 'Next',
+                      bgColor: Colors.white,
+                      textColor: Color(0xff6558F5),
+                      side: BorderSide(
+                        color: Color(
+                          0xff6558F5,
+                        ),
+                      ),
+                      size: Size(double.infinity, size.height*0.07)
+                    ),
+                    SizedBox(height: 10),
                   ],
+                ),
+              ),
+              Divider(thickness: 2),
+              Align(
+                alignment: Alignment.bottomLeft,
+                child: Padding(
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+                  child: Text(
+                    'Next: Anulom Vilom',
+                    style: textStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
                 ),
               )
             ],
