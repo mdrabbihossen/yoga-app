@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:yoga_app/constants/widgets/custom_button.dart';
 import 'package:yoga_app/constants/widgets/text_style.dart';
 import 'package:yoga_app/views/work_out_details/model/work_out_timer_model.dart';
 
@@ -83,26 +84,8 @@ class WorkOutDetails extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  TextButton(
-                    onPressed: () {},
-                    child: Text(
-                      'Previous',
-                      style: textStyle(
-                        fontSize: 17,
-                        textColor: Color(0xff364451),
-                      ),
-                    ),
-                  ),
-                  TextButton(
-                    onPressed: () {},
-                    child: Text(
-                      'Next',
-                      style: textStyle(
-                        textColor: Color(0xff364451),
-                        fontSize: 17,
-                      ),
-                    ),
-                  ),
+                  customButton(onPressed: (){}, buttonText: 'Previous'),
+                  customButton(onPressed: (){}, buttonText: 'Next'),
                 ],
               ),
             ),
