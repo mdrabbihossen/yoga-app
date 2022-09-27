@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:yoga_app/constants/widgets/text_style.dart';
 
 class StartUp extends StatefulWidget {
   const StartUp({Key? key}) : super(key: key);
@@ -33,32 +34,68 @@ class _StartUpState extends State<StartUp> {
             ],
           ),
           SliverToBoxAdapter(
-            child: Column(
-              children: [
-                Container(
-                  height: 200,
-                  color: Colors.white,
-                ),
-                Container(
-                  height: 200,
-                  color: Colors.white,
-                ),
-                Container(
-                  height: 200,
-                  color: Colors.red,
-                ),
-                Container(
-                  height: 200,
-                  color: Colors.green,
-                ),
-                Container(
-                  height: 200,
-                  color: Colors.red,
-                ),
-              ],
+            child: Container(
+              padding: EdgeInsets.all(20),
+              child: Column(
+                children: [
+                  Row(
+                    children: [
+                      Text(
+                        '16 Minutes || 26 Workouts',
+                        style: textStyle(
+                          fontWeight: FontWeight.w400,
+                        ),
+                      ),
+                    ],
+                  ),
+                  Divider(thickness: 2),
+                  ListView.separated(
+                    shrinkWrap: true,
+                    physics: NeverScrollableScrollPhysics(),
+                    separatorBuilder: (_, __) => Divider(
+                      thickness: 2,
+                    ),
+                    itemCount: 10,
+                    itemBuilder: (context, index) => ListTile(
+                      leading: Container(
+                        margin: EdgeInsets.only(right: 20),
+                        child: Image.network(
+                          'https://i.pinimg.com/originals/02/28/74/0228749d03812fc95700955e1a05d42e.gif',
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                      title: Text(
+                        'Yoga $index',
+                        style: textStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18,
+                        ),
+                      ),
+                      subtitle: Text(
+                        index % 2 == 0 ? "00:20" : "x20",
+                        style: textStyle(
+                          fontSize: 15,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ],
+      ),
+      floatingActionButton: ElevatedButton(
+        onPressed: () {},
+        child: Container(
+          padding: EdgeInsets.symmetric(horizontal: 30, vertical: 10),
+          child: Text(
+            'START',
+            style: textStyle(
+              fontSize: 20,
+            ),
+          ),
+        ),
       ),
     );
   }
