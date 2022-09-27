@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:yoga_app/constants/widgets/text_style.dart';
+import 'package:yoga_app/views/home/screens/startup_screen.dart';
 import 'package:yoga_app/views/home/widgets/custom_appbar.dart';
 import 'package:yoga_app/views/home/widgets/custom_drawer.dart';
 import 'package:yoga_app/views/home/widgets/home_content.dart';
@@ -122,11 +123,19 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                   ),
                                   // yoga for all title end
                                   // yoga content
-                                  YogaContent(
-                                    image:
-                                        'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=920&q=80',
-                                    yogaTitle: 'Yoga For Beginners',
-                                    yogaSubtitle: 'Last Time : 2 Feb',
+                                  InkWell(
+                                    onTap: () => Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => StartUp(),
+                                      ),
+                                    ),
+                                    child: YogaContent(
+                                      image:
+                                          'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=920&q=80',
+                                      yogaTitle: 'Yoga For Beginners',
+                                      yogaSubtitle: 'Last Time : 2 Feb',
+                                    ),
                                   ),
                                   SizedBox(height: 15),
                                   YogaContent(

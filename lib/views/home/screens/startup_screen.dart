@@ -18,7 +18,7 @@ class _StartUpState extends State<StartUp> {
           SliverAppBar(
             expandedHeight: 300,
             pinned: true,
-            backgroundColor: Colors.red,
+            backgroundColor: Color(0xff6558F5),
             flexibleSpace: FlexibleSpaceBar(
               collapseMode: CollapseMode.parallax,
               title: Text("Yoga"),
@@ -88,6 +88,10 @@ class _StartUpState extends State<StartUp> {
       ),
       floatingActionButton: ElevatedButton(
         onPressed: () {},
+        style: ElevatedButton.styleFrom(
+          primary: Color(0xff6558F5),
+
+        ),
         child: Container(
           padding: EdgeInsets.symmetric(
             horizontal: size.width * 0.15,
