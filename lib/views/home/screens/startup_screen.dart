@@ -11,6 +11,7 @@ class StartUp extends StatefulWidget {
 class _StartUpState extends State<StartUp> {
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     return Scaffold(
       body: CustomScrollView(
         slivers: [
@@ -88,7 +89,10 @@ class _StartUpState extends State<StartUp> {
       floatingActionButton: ElevatedButton(
         onPressed: () {},
         child: Container(
-          padding: EdgeInsets.symmetric(horizontal: 30, vertical: 10),
+          padding: EdgeInsets.symmetric(
+            horizontal: size.width * 0.15,
+            vertical: size.height * 0.013,
+          ),
           child: Text(
             'START',
             style: textStyle(
@@ -97,6 +101,7 @@ class _StartUpState extends State<StartUp> {
           ),
         ),
       ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
 }
