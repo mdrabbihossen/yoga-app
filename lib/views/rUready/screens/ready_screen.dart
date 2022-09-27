@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:yoga_app/constants/widgets/text_style.dart';
-import 'package:yoga_app/views/rUready/models/timer_model.dart';
+import 'package:yoga_app/views/rUready/model/ready_screen_timer_model.dart';
+
 
 class ReadyScreen extends StatelessWidget {
   const ReadyScreen({Key? key}) : super(key: key);
@@ -9,8 +10,8 @@ class ReadyScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    return ChangeNotifierProvider<TimerModel>(
-      create: (context) => TimerModel(context),
+    return ChangeNotifierProvider<ReadyScreenTimerModel>(
+      create: (context) => ReadyScreenTimerModel(context),
       child: Scaffold(
         body: Center(
           child: Container(
@@ -28,7 +29,7 @@ class ReadyScreen extends StatelessWidget {
                   ),
                 ),
                 SizedBox(height: 20),
-                Consumer<TimerModel>(
+                Consumer<ReadyScreenTimerModel>(
                   builder: (context, myModel, child) => Container(
                     padding: EdgeInsets.all(50),
                     decoration: BoxDecoration(
