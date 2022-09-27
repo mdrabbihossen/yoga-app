@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:yoga_app/constants/widgets/text_style.dart';
+import 'package:yoga_app/views/rUready/screens/ready_screen.dart';
 
 class StartUp extends StatefulWidget {
-  const StartUp({Key? key}) : super(key: key);
+  const StartUp({
+    Key? key,
+  }) : super(key: key);
 
   @override
   State<StartUp> createState() => _StartUpState();
@@ -87,10 +90,14 @@ class _StartUpState extends State<StartUp> {
         ],
       ),
       floatingActionButton: ElevatedButton(
-        onPressed: () {},
+        onPressed: () => Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => ReadyScreen(),
+          ),
+        ),
         style: ElevatedButton.styleFrom(
           primary: Color(0xff6558F5),
-
         ),
         child: Container(
           padding: EdgeInsets.symmetric(
