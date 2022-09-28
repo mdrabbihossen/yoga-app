@@ -5,6 +5,7 @@ import 'package:yoga_app/views/break/screen/break_time_screen.dart';
 
 class WorkOutTimerModel extends ChangeNotifier {
   int countdown = 30;
+  bool visible = false;
 
   WorkOutTimerModel(context) {
     MyWorkOutTimer(context);
@@ -24,5 +25,15 @@ class WorkOutTimerModel extends ChangeNotifier {
         );
       }
     });
+  }
+
+  void show() {
+    visible = true;
+    notifyListeners();
+  }
+
+  void hide() {
+    visible = false;
+    notifyListeners();
   }
 }
