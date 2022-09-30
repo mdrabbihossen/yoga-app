@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:yoga_app/views/finish/screens/finish_screen.dart';
 import 'package:yoga_app/views/home/screens/home_screen.dart';
 
 void main() {
@@ -13,7 +14,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: HomeScreen(),
+      home: FinishScreen(),
     );
   }
 }
