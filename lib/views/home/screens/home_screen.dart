@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:yoga_app/constants/widgets/text_style.dart';
 import 'package:yoga_app/model/yoga_model.dart';
+import 'package:yoga_app/services/yoga_database.dart';
 import 'package:yoga_app/views/home/methods/yoga_methods.dart';
 import 'package:yoga_app/views/home/screens/startup_screen.dart';
 import 'package:yoga_app/views/home/widgets/custom_appbar.dart';
@@ -20,6 +21,16 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   late AnimationController _animationController;
   late Animation _colorTween, _homeTween, _yogaTween, _iconTween, _drawerTween;
   late AnimationController _textAnimationController;
+
+  bool isLoading = true;
+  late List<YogaSummary> yogaSumList;
+
+  Future readYogaSumEntry() async {
+    this.yogaSumList = await YogaDatabase.instance.readAllYogaSummary();
+    isLoading = false;
+
+    print(yogaSumList[0].YogaWorkOutName.toString());
+  }
 
   @override
   void initState() {
@@ -43,46 +54,13 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
     );
 
     // CREATING ONE YOGA WORKOUT PACK
-    makeYogaSummaryEntry(
-      YogaSummary(
-        YogaWorkOutName: YogaModel.YogaTable1,
-        BackImg: 'BACKIMAGURL',
-        TimeTaken: '36',
-        TotalNoOfWork: '12',
-      ),
-    );
-    makeYogaEntry(
-      Yoga(
-          Seconds: true,
-          YogaImgUrl: 'DUMMYURL',
-          YogaTitle: 'Anulom Vilom',
-          SecondsOrTimes: '30'),
-      YogaModel.YogaTable1,
-    );
-    makeYogaEntry(
-      Yoga(
-          Seconds: true,
-          YogaImgUrl: "DUMMYURL1",
-          YogaTitle: "Kapalbhati",
-          SecondsOrTimes: '15'),
-      YogaModel.YogaTable1,
-    );
-    makeYogaEntry(
-      Yoga(
-          Seconds: true,
-          YogaImgUrl: "DUMMYURL2",
-          YogaTitle: "Pranam",
-          SecondsOrTimes: '12'),
-      YogaModel.YogaTable1,
-    );
-    makeYogaEntry(
-      Yoga(
-          Seconds: true,
-          YogaImgUrl: "DUMMYURL3",
-          YogaTitle: "Shwasari",
-          SecondsOrTimes: '16'),
-      YogaModel.YogaTable1,
-    );
+    // makeYogaSumEntry(YogaSummary(YogaWorkOutName: YogaModel.YogaTable1, BackImg: "BAhttps://images.unsplash.com/photo-1544367567-0f2fcb009e0b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1220&q=80CKIMAGURL", TimeTaken: "36", TotalNoOfWork: "12"));
+    // makeYogaEntry(Yoga(Seconds: true, YogaImgUrl: "https://images.squarespace-cdn.com/content/v1/5e13030d166215441db6be9c/1579169359456-Z0OGVGKO6LXEG4HZDJ3D/Yoga-Flow-Animation.gif?format=2500w", YogaTitle: "Anulom Vilom", SecondsOrTimes: '30'), YogaModel.YogaTable1);
+    // makeYogaEntry(Yoga(Seconds: true, YogaImgUrl: "https://images.squarespace-cdn.com/content/v1/5e13030d166215441db6be9c/1579169359456-Z0OGVGKO6LXEG4HZDJ3D/Yoga-Flow-Animation.gif?format=2500w", YogaTitle: "Kapalbhati", SecondsOrTimes: '15'), YogaModel.YogaTable1);
+    // makeYogaEntry(Yoga(Seconds: true, YogaImgUrl: "https://images.squarespace-cdn.com/content/v1/5e13030d166215441db6be9c/1579169359456-Z0OGVGKO6LXEG4HZDJ3D/Yoga-Flow-Animation.gif?format=2500w", YogaTitle: "Pranam", SecondsOrTimes: '12'), YogaModel.YogaTable1);
+    // makeYogaEntry(Yoga(Seconds: true, YogaImgUrl: "https://images.squarespace-cdn.com/content/v1/5e13030d166215441db6be9c/1579169359456-Z0OGVGKO6LXEG4HZDJ3D/Yoga-Flow-Animation.gif?format=2500w", YogaTitle: "Shwasari", SecondsOrTimes: '16'), YogaModel.YogaTable1);
+
+    readYogaSumEntry();
   }
 
   bool scrollListener(ScrollNotification scrollNotification) {
