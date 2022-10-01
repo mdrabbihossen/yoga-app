@@ -185,11 +185,6 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                             ),
 
                             // yoga section end
-
-                            Container(
-                              height: 1000,
-                              color: Colors.blue,
-                            )
                           ],
                         ),
                       ],
