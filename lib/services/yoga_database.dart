@@ -55,5 +55,20 @@ class YogaDatabase {
     final query_res = await db!.query(YogaModel.YogaTable1, orderBy: orderBy);
     return query_res.map((json) => Yoga.fromJson(json)).toList();
   }
+
 // read all yoga end
+// read one yoga
+  Future<Yoga?> readOneYoga(int id) async {
+    final db = await instance.database;
+    final map = await db!.query(YogaModel.YogaTable1,
+        columns: YogaModel.YogaTable1ColumnName,
+        where: '${YogaModel.IDName} = ?',
+        whereArgs: [id]);
+    if (map.isNotEmpty) {
+      return Yoga.fromJson(map.first);
+    } else {
+      return null;
+    }
+  }
+//read one yoga end
 }
