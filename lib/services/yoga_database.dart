@@ -31,7 +31,7 @@ class YogaDatabase {
     final boolType = 'BOOLEAN NOT NULL';
     // beginner yoga
     await db.execute('''
-       CREATE TABLE BeginnerYoga(
+       CREATE TABLE ${YogaModel.YogaTable1}(
         ${YogaModel.IDName} $idType,
         ${YogaModel.YogaName} $textType,
         ${YogaModel.ImageName} $textType,
@@ -41,46 +41,74 @@ class YogaDatabase {
 
     // weight loss yoga
     await db.execute('''
-       CREATE TABLE WeightLossYoga(
+       CREATE TABLE ${YogaModel.YogaTable2}(
         ${YogaModel.IDName} $idType,
         ${YogaModel.YogaName} $textType,
         ${YogaModel.ImageName} $textType,
         ${YogaModel.SecondsOrNot} $boolType,
        ),''');
     //weight loss yoga end
-    // Yoga Summary
+
+    // kids yoga
     await db.execute('''
-       CREATE TABLE YogaSummary(
+       CREATE TABLE ${YogaModel.YogaTable3}(
         ${YogaModel.IDName} $idType,
         ${YogaModel.YogaName} $textType,
         ${YogaModel.ImageName} $textType,
         ${YogaModel.SecondsOrNot} $boolType,
+       ),''');
+    // kids yoga end
+    // Yoga Summary
+    await db.execute('''
+       CREATE TABLE ${YogaModel.YogaSummary}(
+        ${YogaModel.IDName} $idType,
+        ${YogaModel.YogaWorkOutName} $textType,
+        ${YogaModel.BackImg} $textType,
+        ${YogaModel.TimeTaken} $textType,
+          ${YogaModel.TotalNoOfWork} $textType,
        ),''');
     // Yoga Summary end
   }
 
 // create database end
 // Insert db
-  Future<Yoga?> Insert(Yoga yoga) async {
+  Future<Yoga?> Insert(Yoga yoga,String TableName) async {
     final db = await instance.database;
-    final id = await db!.insert(YogaModel.YogaTable1, yoga.toJson());
+    final id = await db!.insert(TableName, yoga.toJson());
     return yoga.copy(id: id);
   }
 
-// Insert db end
-// read all yoga
-  Future<List<Yoga>> readAllYoga() async {
+  // Insert db end
+  // INSERT yoga summary
+  Future<YogaSummary?> InsertYogaSummary(YogaSummary yogaSummary) async {
+    final db = await instance.database;
+    final id = await db!.insert(YogaModel.YogaTable1, yogaSummary.toJson());
+    return yogaSummary.copy(id: id);
+  }
+
+  // INSERT yoga summary end
+  // read all yoga
+  Future<List<Yoga>> readAllYoga(String TableName) async {
     final db = await instance.database;
     final orderBy = '${YogaModel.IDName} ASC';
-    final query_res = await db!.query(YogaModel.YogaTable1, orderBy: orderBy);
+    final query_res = await db!.query(TableName, orderBy: orderBy);
     return query_res.map((json) => Yoga.fromJson(json)).toList();
   }
 
 // read all yoga end
-// read one yoga
-  Future<Yoga?> readOneYoga(int id) async {
+  // read all yoga summary
+  Future<List<YogaSummary>> readAllYogaSummary() async {
     final db = await instance.database;
-    final map = await db!.query(YogaModel.YogaTable1,
+    final orderBy = '${YogaModel.IDName} ASC';
+    final query_res = await db!.query(YogaModel.YogaSummary, orderBy: orderBy);
+    return query_res.map((json) => YogaSummary.fromJson(json)).toList();
+  }
+
+  // read all yoga summary end
+  // read one yoga
+  Future<Yoga?> readOneYoga(int id,String TableName) async {
+    final db = await instance.database;
+    final map = await db!.query(TableName,
         columns: YogaModel.YogaTable1ColumnName,
         where: '${YogaModel.IDName} = ?',
         whereArgs: [id]);
