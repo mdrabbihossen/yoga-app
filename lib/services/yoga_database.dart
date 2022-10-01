@@ -19,8 +19,8 @@ class YogaDatabase {
   // get database
   Future<Database?> get database async {
     if (_database != null) return _database;
-    _database = await initializeDB("YogaStpesDB.db");
-    return database;
+    _database = await initializeDB("YogaStepsDB.db");
+    return _database;
   }
 
   // get database end
@@ -39,4 +39,5 @@ class YogaDatabase {
        ''');
   }
 // create database end
+
 }
