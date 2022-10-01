@@ -1,5 +1,7 @@
 class YogaModel {
   static String YogaTable1 = "BeginnerYoga";
+  static String YogaTable2 = "WeightLossYoga";
+  static String YogaTable3 = "YogaSummary";
   static String IDName = "ID";
   static String YogaName = "YogaName";
   static String SecondsOrNot = "SecondsOrNot";

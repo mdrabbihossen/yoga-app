@@ -29,14 +29,34 @@ class YogaDatabase {
     final idType = 'INTEGER PRIMARY KEY AUTOINCREMENT';
     final textType = 'TEXT NOT NULL';
     final boolType = 'BOOLEAN NOT NULL';
+    // beginner yoga
     await db.execute('''
        CREATE TABLE BeginnerYoga(
         ${YogaModel.IDName} $idType,
         ${YogaModel.YogaName} $textType,
         ${YogaModel.ImageName} $textType,
         ${YogaModel.SecondsOrNot} $boolType,
-       ),
-       ''');
+       ),''');
+    // beginner yoga end
+
+    // weight loss yoga
+    await db.execute('''
+       CREATE TABLE WeightLossYoga(
+        ${YogaModel.IDName} $idType,
+        ${YogaModel.YogaName} $textType,
+        ${YogaModel.ImageName} $textType,
+        ${YogaModel.SecondsOrNot} $boolType,
+       ),''');
+    //weight loss yoga end
+    // Yoga Summary
+    await db.execute('''
+       CREATE TABLE YogaSummary(
+        ${YogaModel.IDName} $idType,
+        ${YogaModel.YogaName} $textType,
+        ${YogaModel.ImageName} $textType,
+        ${YogaModel.SecondsOrNot} $boolType,
+       ),''');
+    // Yoga Summary end
   }
 
 // create database end
