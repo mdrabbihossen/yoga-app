@@ -10,6 +10,7 @@ class YogaModel {
   static String IDName = "ID";
   static String YogaName = "YogaName";
   static String SecondsOrNot = "SecondsOrNot";
+  static String SecondsOrTimes = "SecondsOrTimes";
   static String ImageName = "ImageName";
   static List<String>? YogaTable1ColumnName = [
     YogaModel.IDName,
@@ -24,20 +25,30 @@ class Yoga {
   final bool Seconds;
   final String YogaTitle;
   final String YogaImgUrl;
+  final String SecondsOrTimes;
 
   Yoga({
     this.id,
     required this.Seconds,
     required this.YogaImgUrl,
     required this.YogaTitle,
+    required this.SecondsOrTimes,
   });
 
-  Yoga copy({int? id, bool? Seconds, String? YogaTitle, String? YogaImgUrl}) {
+  Yoga copy({
+    int? id,
+    bool? Seconds,
+    String? YogaTitle,
+    String? YogaImgUrl,
+    String? SecondsOrTimes,
+  }) {
     return Yoga(
         id: id ?? this.id,
         Seconds: Seconds ?? this.Seconds,
         YogaImgUrl: YogaImgUrl ?? this.YogaImgUrl,
-        YogaTitle: YogaTitle ?? this.YogaTitle);
+        YogaTitle: YogaTitle ?? this.YogaTitle,
+        SecondsOrTimes: SecondsOrTimes?? this.SecondsOrTimes,
+    );
   }
 
   factory Yoga.fromJson(Map<String, dynamic> json) {
@@ -46,6 +57,7 @@ class Yoga {
       Seconds: json[YogaModel.SecondsOrNot] == 1,
       YogaTitle: json[YogaModel.YogaName] as String,
       YogaImgUrl: json[YogaModel.ImageName] as String,
+        SecondsOrTimes: json[YogaModel] as String,
     );
   }
 
@@ -55,6 +67,7 @@ class Yoga {
       YogaModel.SecondsOrNot: Seconds ? 1 : 0,
       YogaModel.YogaName: YogaTitle,
       YogaModel.ImageName: YogaImgUrl,
+      YogaModel.SecondsOrTimes: SecondsOrTimes
     };
   }
 }

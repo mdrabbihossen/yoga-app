@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:yoga_app/constants/widgets/text_style.dart';
+import 'package:yoga_app/model/yoga_model.dart';
+import 'package:yoga_app/views/home/methods/yoga_methods.dart';
 import 'package:yoga_app/views/home/screens/startup_screen.dart';
 import 'package:yoga_app/views/home/widgets/custom_appbar.dart';
 import 'package:yoga_app/views/home/widgets/custom_drawer.dart';
@@ -38,6 +40,48 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
     _textAnimationController = AnimationController(
       vsync: this,
       duration: Duration(seconds: 0),
+    );
+
+    // CREATING ONE YOGA WORKOUT PACK
+    makeYogaSummaryEntry(
+      YogaSummary(
+        YogaWorkOutName: YogaModel.YogaTable1,
+        BackImg: 'BACKIMAGURL',
+        TimeTaken: '36',
+        TotalNoOfWork: '12',
+      ),
+    );
+    makeYogaEntry(
+      Yoga(
+          Seconds: true,
+          YogaImgUrl: 'DUMMYURL',
+          YogaTitle: 'Anulom Vilom',
+          SecondsOrTimes: '30'),
+      YogaModel.YogaTable1,
+    );
+    makeYogaEntry(
+      Yoga(
+          Seconds: true,
+          YogaImgUrl: "DUMMYURL1",
+          YogaTitle: "Kapalbhati",
+          SecondsOrTimes: '15'),
+      YogaModel.YogaTable1,
+    );
+    makeYogaEntry(
+      Yoga(
+          Seconds: true,
+          YogaImgUrl: "DUMMYURL2",
+          YogaTitle: "Pranam",
+          SecondsOrTimes: '12'),
+      YogaModel.YogaTable1,
+    );
+    makeYogaEntry(
+      Yoga(
+          Seconds: true,
+          YogaImgUrl: "DUMMYURL3",
+          YogaTitle: "Shwasari",
+          SecondsOrTimes: '16'),
+      YogaModel.YogaTable1,
     );
   }
 
