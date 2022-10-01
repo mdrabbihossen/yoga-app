@@ -38,6 +38,22 @@ class YogaDatabase {
        ),
        ''');
   }
-// create database end
 
+// create database end
+// Insert db
+  Future<Yoga?> Insert(Yoga yoga) async {
+    final db = await instance.database;
+    final id = await db!.insert(YogaModel.YogaTable1, yoga.toJson());
+    return yoga.copy(id: id);
+  }
+
+// Insert db end
+// read all yoga
+  Future<List<Yoga>> readAllYoga() async {
+    final db = await instance.database;
+    final orderBy = '${YogaModel.IDName} ASC';
+    final query_res = await db!.query(YogaModel.YogaTable1, orderBy: orderBy);
+    return query_res.map((json) => Yoga.fromJson(json)).toList();
+  }
+// read all yoga end
 }
