@@ -52,9 +52,10 @@ class YogaDatabase {
     await db.execute(''' 
     CREATE TABLE ${YogaModel.YogaSummary}(
     ${YogaModel.IDName} $idType,
-    ${YogaModel.YogaName} $textType,
-    ${YogaModel.ImageName} $textType,
-    ${YogaModel.SecondsOrNot} $boolType,
+    ${YogaModel.YogaWorkOutName} $textType,
+    ${YogaModel.BackImg} $textType,
+    ${YogaModel.TimeTaken} $textType,
+    ${YogaModel.TotalNoOfWork} $textType,
     ),''');
   }
 

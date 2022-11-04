@@ -3,10 +3,15 @@ class YogaModel {
   static String YogaTable2 = 'WeightLossYoga';
   static String YogaTable3 = 'KidsYoga';
   static String YogaSummary = 'YogaSummary';
+  static String YogaWorkOutName = 'YogaWorkOutName';
+  static String BackImg = 'BackImg';
+  static String TimeTaken = 'TimeTaken';
+  static String TotalNoOfWork = 'TotalNoOfWork';
   static String IDName = 'ID';
   static String YogaName = 'YogaName';
   static String SecondsOrNot = 'SecondsOrNot';
   static String ImageName = 'ImageName';
+
   static List<String>? YogaTable1ColumnName = [
     YogaModel.IDName,
     YogaModel.YogaName,
