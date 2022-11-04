@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 import 'package:yoga_app/constants/widgets/text_style.dart';
+import 'package:yoga_app/model/yoga_model.dart';
+import 'package:yoga_app/services/yoga_database.dart';
 
 import 'package:yoga_app/views/home/screens/startup_screen.dart';
 import 'package:yoga_app/views/home/widgets/custom_appbar.dart';
@@ -20,10 +22,18 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   late Animation _colorTween, _homeTween, _yogaTween, _iconTween, _drawerTween;
   late AnimationController _textAnimationController;
 
+  Future makeYogaEntry(Yoga yoga, String TableName) async {
+    await YogaDatabase.instance.insert(yoga, TableName);
+  }
+
+  Future makeYogaSumEntry(YogaSummary yogaSummary) async {
+    await YogaDatabase.instance.insertYogaSummary(yogaSummary);
+  }
+
   @override
   void initState() {
     // implement initState
-    super.initState();
+
     _animationController =
         AnimationController(vsync: this, duration: Duration(seconds: 0));
     _colorTween = ColorTween(begin: Colors.transparent, end: Colors.white)
@@ -40,6 +50,26 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
       vsync: this,
       duration: Duration(seconds: 0),
     );
+    super.initState();
+    makeYogaSumEntry(
+      YogaSummary(
+          YogaWorkOutName: YogaModel.YogaTable1,
+          BackImg: "BACKIMGURL",
+          TimeTaken: "36",
+          TotalNoOfWork: "12"),
+    );
+    makeYogaEntry(
+        Yoga(seconds: true, yogaTitle: "Anulom Vilom", yogaImgUrl: "DUMMYURL"),
+        YogaModel.YogaTable1);
+    makeYogaEntry(
+        Yoga(seconds: true, yogaTitle: "Kapalbhati", yogaImgUrl: "DUMMYURL1"),
+        YogaModel.YogaTable1);
+    makeYogaEntry(
+        Yoga(seconds: true, yogaTitle: "Pranam", yogaImgUrl: "DUMMYURL2"),
+        YogaModel.YogaTable1);
+    makeYogaEntry(
+        Yoga(seconds: true, yogaTitle: "Shwasari", yogaImgUrl: "DUMMYURL3"),
+        YogaModel.YogaTable1);
   }
 
   bool scrollListener(ScrollNotification scrollNotification) {
