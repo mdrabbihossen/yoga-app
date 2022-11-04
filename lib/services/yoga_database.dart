@@ -38,4 +38,33 @@ class YogaDatabase {
     
     ''');
   }
+
+// insert
+  Future<Yoga?> insert(Yoga yoga) async {
+    final db = await instance.database;
+    final id = await db!.insert(YogaModel.YogaTable1, yoga.toJson());
+    return yoga.copy(id: id);
+  }
+
+// readAll
+  Future<List<Yoga>> readAllYoga() async {
+    final db = await instance.database;
+    final orderBy = '${YogaModel.IDName} ASC';
+    final query_res = await db!.query(YogaModel.YogaTable1, orderBy: orderBy);
+    return query_res.map((json) => Yoga.fromJson(json)).toList();
+  }
+
+// readOne
+  Future<Yoga?> readOneYoga(int id) async {
+    final db = await instance.database;
+    final map = await db!.query(YogaModel.YogaTable1,
+        columns: YogaModel.YogaTable1ColumnName,
+        where: '${YogaModel.IDName} = ?',
+        whereArgs: [id]);
+    if (map.isNotEmpty) {
+      return Yoga.fromJson(map.first);
+    } else {
+      return null;
+    }
+  }
 }
