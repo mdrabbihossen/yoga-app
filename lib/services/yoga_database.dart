@@ -60,24 +60,38 @@ class YogaDatabase {
   }
 
 // insert
-  Future<Yoga?> insert(Yoga yoga) async {
+  Future<Yoga?> insert(Yoga yoga,String TableName) async {
     final db = await instance.database;
-    final id = await db!.insert(YogaModel.YogaTable1, yoga.toJson());
+    final id = await db!.insert(TableName, yoga.toJson());
     return yoga.copy(id: id);
+  }
+  // insert yoga summary
+  Future<YogaSummary?> insertYogaSummary(YogaSummary yogaSummary) async {
+    final db = await instance.database;
+    final id = await db!.insert(YogaModel.YogaSummary, yogaSummary.toJson());
+    return yogaSummary.copy(id: id);
+  }
+
+  // read all yoga summary
+  Future<List<YogaSummary>> readAllYogaSummary() async {
+    final db = await instance.database;
+    final orderBy = '${YogaModel.IDName} ASC';
+    final query_res = await db!.query(YogaModel.YogaSummary, orderBy: orderBy);
+    return query_res.map((json) => YogaSummary.fromJson(json)).toList();
   }
 
 // readAll
-  Future<List<Yoga>> readAllYoga() async {
+  Future<List<Yoga>> readAllYoga(String TableName) async {
     final db = await instance.database;
     final orderBy = '${YogaModel.IDName} ASC';
-    final query_res = await db!.query(YogaModel.YogaTable1, orderBy: orderBy);
+    final query_res = await db!.query(TableName, orderBy: orderBy);
     return query_res.map((json) => Yoga.fromJson(json)).toList();
   }
 
 // readOne
-  Future<Yoga?> readOneYoga(int id) async {
+  Future<Yoga?> readOneYoga(int id,String TableName) async {
     final db = await instance.database;
-    final map = await db!.query(YogaModel.YogaTable1,
+    final map = await db!.query(TableName,
         columns: YogaModel.YogaTable1ColumnName,
         where: '${YogaModel.IDName} = ?',
         whereArgs: [id]);
