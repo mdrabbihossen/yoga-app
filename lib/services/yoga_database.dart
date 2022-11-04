@@ -35,18 +35,7 @@ class YogaDatabase {
     ${YogaModel.ImageName} $textType,
     ${YogaModel.SecondsOrNot} $boolType,
     ),
-     CREATE TABLE BeginnerYoga(
-    ${YogaModel.IDName} $idType,
-    ${YogaModel.YogaName} $textType,
-    ${YogaModel.ImageName} $textType,
-    ${YogaModel.SecondsOrNot} $boolType,
-    ),
-     CREATE TABLE BeginnerYoga(
-    ${YogaModel.IDName} $idType,
-    ${YogaModel.YogaName} $textType,
-    ${YogaModel.ImageName} $textType,
-    ${YogaModel.SecondsOrNot} $boolType,
-    ),
+    
     ''');
   }
 }
