@@ -10,6 +10,7 @@ class YogaModel {
   static String IDName = 'ID';
   static String YogaName = 'YogaName';
   static String SecondsOrNot = 'SecondsOrNot';
+  static String SecondsOrTimes = 'SecondsOrTimes';
   static String ImageName = 'ImageName';
 
   static List<String>? YogaTable1ColumnName = [
@@ -25,12 +26,14 @@ class Yoga {
   final bool seconds;
   final String yogaTitle;
   final String yogaImgUrl;
+  final String secondsOrTimes;
 
   Yoga({
     this.id,
     required this.seconds,
     required this.yogaTitle,
     required this.yogaImgUrl,
+    required this.secondsOrTimes,
   });
 
   Yoga copy({
@@ -38,12 +41,14 @@ class Yoga {
     bool? seconds,
     String? yogaTitle,
     String? yogaImgUrl,
+    String? secondsOrTimes,
   }) {
     return Yoga(
       id: id ?? this.id,
       seconds: seconds ?? this.seconds,
       yogaTitle: yogaTitle ?? this.yogaTitle,
       yogaImgUrl: yogaImgUrl ?? this.yogaImgUrl,
+      secondsOrTimes: secondsOrTimes?? this.secondsOrTimes,
     );
   }
 
@@ -53,6 +58,7 @@ class Yoga {
       seconds: json[YogaModel.SecondsOrNot] == 1,
       yogaTitle: json[YogaModel.YogaName] as String,
       yogaImgUrl: json[YogaModel.ImageName] as String,
+      secondsOrTimes: json[YogaModel.SecondsOrTimes] as String,
     );
   }
 
@@ -62,6 +68,7 @@ class Yoga {
       YogaModel.SecondsOrNot: seconds ? 1 : 0,
       YogaModel.YogaName: yogaTitle,
       YogaModel.ImageName: yogaImgUrl,
+      YogaModel.SecondsOrTimes:secondsOrTimes,
     };
   }
 }

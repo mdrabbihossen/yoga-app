@@ -59,16 +59,32 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
           TotalNoOfWork: "12"),
     );
     makeYogaEntry(
-        Yoga(seconds: true, yogaTitle: "Anulom Vilom", yogaImgUrl: "DUMMYURL"),
+        Yoga(
+            seconds: true,
+            yogaTitle: "Anulom Vilom",
+            yogaImgUrl: "DUMMYURL",
+            secondsOrTimes: '30'),
         YogaModel.YogaTable1);
     makeYogaEntry(
-        Yoga(seconds: true, yogaTitle: "Kapalbhati", yogaImgUrl: "DUMMYURL1"),
+        Yoga(
+            seconds: true,
+            yogaTitle: "Kapalbhati",
+            yogaImgUrl: "DUMMYURL1",
+            secondsOrTimes: '15'),
         YogaModel.YogaTable1);
     makeYogaEntry(
-        Yoga(seconds: true, yogaTitle: "Pranam", yogaImgUrl: "DUMMYURL2"),
+        Yoga(
+            seconds: true,
+            yogaTitle: "Pranam",
+            yogaImgUrl: "DUMMYURL2",
+            secondsOrTimes: '12'),
         YogaModel.YogaTable1);
     makeYogaEntry(
-        Yoga(seconds: true, yogaTitle: "Shwasari", yogaImgUrl: "DUMMYURL3"),
+        Yoga(
+            seconds: true,
+            yogaTitle: "Shwasari",
+            yogaImgUrl: "DUMMYURL3",
+            secondsOrTimes: '16'),
         YogaModel.YogaTable1);
   }
 

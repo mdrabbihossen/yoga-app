@@ -33,7 +33,7 @@ class YogaDatabase {
     ${YogaModel.IDName} $idType,
     ${YogaModel.YogaName} $textType,
     ${YogaModel.ImageName} $textType,
-    ${YogaModel.SecondsOrNot} $boolType,
+    ${YogaModel.SecondsOrTimes} $textType,
     ),''');
     await db.execute(''' 
     CREATE TABLE ${YogaModel.YogaTable2}(
@@ -41,6 +41,7 @@ class YogaDatabase {
     ${YogaModel.YogaName} $textType,
     ${YogaModel.ImageName} $textType,
     ${YogaModel.SecondsOrNot} $boolType,
+    ${YogaModel.SecondsOrTimes} $textType,
     ),''');
     await db.execute(''' 
     CREATE TABLE ${YogaModel.YogaTable3}(
@@ -48,6 +49,7 @@ class YogaDatabase {
     ${YogaModel.YogaName} $textType,
     ${YogaModel.ImageName} $textType,
     ${YogaModel.SecondsOrNot} $boolType,
+    ${YogaModel.SecondsOrTimes} $textType,
     ),''');
     await db.execute(''' 
     CREATE TABLE ${YogaModel.YogaSummary}(
@@ -60,11 +62,12 @@ class YogaDatabase {
   }
 
 // insert
-  Future<Yoga?> insert(Yoga yoga,String TableName) async {
+  Future<Yoga?> insert(Yoga yoga, String TableName) async {
     final db = await instance.database;
     final id = await db!.insert(TableName, yoga.toJson());
     return yoga.copy(id: id);
   }
+
   // insert yoga summary
   Future<YogaSummary?> insertYogaSummary(YogaSummary yogaSummary) async {
     final db = await instance.database;
@@ -89,7 +92,7 @@ class YogaDatabase {
   }
 
 // readOne
-  Future<Yoga?> readOneYoga(int id,String TableName) async {
+  Future<Yoga?> readOneYoga(int id, String TableName) async {
     final db = await instance.database;
     final map = await db!.query(TableName,
         columns: YogaModel.YogaTable1ColumnName,
