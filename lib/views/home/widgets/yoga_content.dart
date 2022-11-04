@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:yoga_app/constants/widgets/text_style.dart';
 
@@ -22,7 +23,7 @@ class YogaContent extends StatelessWidget {
           decoration: BoxDecoration(
             image: DecorationImage(
               fit: BoxFit.cover,
-              image: NetworkImage(image),
+              image: CachedNetworkImageProvider(image),
             ),
           ),
         ),

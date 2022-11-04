@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:yoga_app/constants/widgets/custom_button.dart';
 import 'package:yoga_app/constants/widgets/text_style.dart';
@@ -13,8 +14,9 @@ class FinishScreen extends StatelessWidget {
         child: Column(
           children: [
             Align(
-              child: Image.network(
-                'https://media.istockphoto.com/vectors/first-prize-gold-trophy-iconprize-gold-trophy-winner-first-prize-vector-id1183252990?k=20&m=1183252990&s=612x612&w=0&h=BNbDi4XxEy8rYBRhxDl3c_bFyALnUUcsKDEB5EfW2TY=',
+              child: CachedNetworkImage(
+                imageUrl:
+                    'https://media.istockphoto.com/vectors/first-prize-gold-trophy-iconprize-gold-trophy-winner-first-prize-vector-id1183252990?k=20&m=1183252990&s=612x612&w=0&h=BNbDi4XxEy8rYBRhxDl3c_bFyALnUUcsKDEB5EfW2TY=',
                 height: size.height * 0.38,
               ),
             ),

@@ -29,14 +29,33 @@ class YogaDatabase {
     final boolType = 'BOOLEAN NOT NULL';
 
     await db.execute(''' 
-    CREATE TABLE BeginnerYoga(
+    CREATE TABLE ${YogaModel.YogaTable1}(
     ${YogaModel.IDName} $idType,
     ${YogaModel.YogaName} $textType,
     ${YogaModel.ImageName} $textType,
     ${YogaModel.SecondsOrNot} $boolType,
-    ),
-    
-    ''');
+    ),''');
+    await db.execute(''' 
+    CREATE TABLE ${YogaModel.YogaTable2}(
+    ${YogaModel.IDName} $idType,
+    ${YogaModel.YogaName} $textType,
+    ${YogaModel.ImageName} $textType,
+    ${YogaModel.SecondsOrNot} $boolType,
+    ),''');
+    await db.execute(''' 
+    CREATE TABLE ${YogaModel.YogaTable3}(
+    ${YogaModel.IDName} $idType,
+    ${YogaModel.YogaName} $textType,
+    ${YogaModel.ImageName} $textType,
+    ${YogaModel.SecondsOrNot} $boolType,
+    ),''');
+    await db.execute(''' 
+    CREATE TABLE ${YogaModel.YogaSummary}(
+    ${YogaModel.IDName} $idType,
+    ${YogaModel.YogaName} $textType,
+    ${YogaModel.ImageName} $textType,
+    ${YogaModel.SecondsOrNot} $boolType,
+    ),''');
   }
 
 // insert
