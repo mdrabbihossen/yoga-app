@@ -65,3 +65,55 @@ class Yoga {
     };
   }
 }
+
+class YogaSummary {
+  final int? id;
+  final String YogaWorkOutName;
+  final String BackImg;
+  final String TimeTaken;
+  final String TotalNoOfWork;
+
+  YogaSummary({
+    this.id,
+    required this.YogaWorkOutName,
+    required this.BackImg,
+    required this.TimeTaken,
+    required this.TotalNoOfWork,
+  });
+
+  YogaSummary copy({
+    int? id,
+    String? TimeTaken,
+    String? YogaWorkOutName,
+    String? BackImg,
+    String? TotalNoOfWork,
+  }) {
+    return YogaSummary(
+      id: id ?? this.id,
+      TimeTaken: TimeTaken ?? this.TimeTaken,
+      YogaWorkOutName: YogaWorkOutName ?? this.YogaWorkOutName,
+      BackImg: BackImg ?? this.BackImg,
+      TotalNoOfWork: TotalNoOfWork ?? this.TotalNoOfWork,
+    );
+  }
+
+  factory YogaSummary.fromJson(Map<String, dynamic> json) {
+    return YogaSummary(
+      id: int.parse(json[YogaModel.IDName]),
+      TimeTaken: json[YogaModel.TimeTaken] as String,
+      YogaWorkOutName: json[YogaModel.YogaName] as String,
+      BackImg: json[YogaModel.BackImg] as String,
+      TotalNoOfWork: json[YogaModel.TotalNoOfWork] as String,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      YogaModel.IDName: id,
+      YogaModel.TimeTaken: TimeTaken,
+      YogaModel.YogaWorkOutName: YogaWorkOutName,
+      YogaModel.BackImg: BackImg,
+      YogaModel.TotalNoOfWork: TotalNoOfWork,
+    };
+  }
+}
