@@ -54,7 +54,7 @@ class ReadyScreen extends StatelessWidget {
                   child: Padding(
                     padding: EdgeInsets.symmetric(vertical: 16, horizontal: 15),
                     child: Text(
-                      'Next: Anu-lom Vi-lom',
+                      'Next: Anulom Vilom',
                       style: textStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
